@@ -22,22 +22,25 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Cache local Maven repository
-        uses: actions/cache@v3
+      - name: Restore m2 cache
+        id: cache-primes-restore
+        uses: actions/cache/restore@v3
         with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-m2release-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2release
+          path: |
+            ~/.m2/repository
+          key: ${{ runner.os }}-m2release
 
       - name: Build and Test
         uses: qcastel/github-actions-maven-cmd@master
+        env:
+          JAVA_HOME: /usr/lib/jvm/java-17-openjdk/
         with:
           maven-args: "clean test -Ddockerfile.skip -DdockerCompose.skip -Djib.skip"
 
       - name: Release
-        uses: qcastel/github-actions-maven-release@v1.12.25
+        uses: qcastel/github-actions-maven-release@v1.12.39
         env:
-          JAVA_HOME: /usr/lib/jvm/java-11-openjdk/
+          JAVA_HOME: /usr/lib/jvm/java-17-openjdk/
         with:
           release-branch-name: "main"
           maven-args: "jib:build -DskipTests -DskipITs -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }} -Dgpg.keyname=${{ secrets.GPG_KEY_ID }}"
@@ -58,3 +61,10 @@ jobs:
           maven-repo-server-id: ossrh
           maven-repo-server-username: ${{ secrets.OSSRH_USERNAME }}
           maven-repo-server-password: ${{ secrets.OSSRH_TOKEN }}
+
+      - name: Cache local Maven repository
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-m2release-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2release
