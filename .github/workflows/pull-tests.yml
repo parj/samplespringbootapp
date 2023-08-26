@@ -13,14 +13,14 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Cache local Maven repository
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-m2pull-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2pull
 
       - name: Setup java
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
           distribution: ${{ matrix.distribution }}
           java-version: ${{ matrix.java }}
