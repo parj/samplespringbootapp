@@ -12,8 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Restore m2 cache
-        id: cache-primes-restore
+      - name: Restore m2 cachess
         uses: actions/cache/restore@v3
         with:
           path: |

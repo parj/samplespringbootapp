@@ -26,12 +26,11 @@ jobs:
         java-version: '17'
 
     - name: Restore m2 cache
-        id: cache-primes-restore
-        uses: actions/cache/restore@v3
-        with:
-          path: |
-            ~/.m2/repository
-          key: ${{ runner.os }}-m2contscan
+      uses: actions/cache/restore@v3
+      with:
+        path: |
+          ~/.m2/repository
+        key: ${{ runner.os }}-m2contscan
 
     - name: Build local container image
       run: |

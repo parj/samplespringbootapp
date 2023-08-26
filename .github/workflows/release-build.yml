@@ -23,7 +23,6 @@ jobs:
           java-version: '17'
 
       - name: Restore m2 cache
-        id: cache-primes-restore
         uses: actions/cache/restore@v3
         with:
           path: |

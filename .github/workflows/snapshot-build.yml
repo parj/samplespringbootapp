@@ -27,13 +27,12 @@ jobs:
         distribution: 'zulu'
         java-version: '17'
 
-    - name: Restore m2 cache
-        id: cache-primes-restore
-        uses: actions/cache/restore@v3
-        with:
-          path: |
-            ~/.m2/repository
-          key: ${{ runner.os }}-m2
+    - name: Restore m2 cache=
+      uses: actions/cache/restore@v3
+      with:
+        path: |
+          ~/.m2/repository
+        key: ${{ runner.os }}-m2
 
     - name: Run tests
       run: |
