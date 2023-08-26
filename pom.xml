@@ -92,6 +92,7 @@
         <jar_file>${project.build.directory}/${project.build.finalName}.jar</jar_file>
         <spring.doc>1.6.12</spring.doc>
         <log4j2.version>2.20.0</log4j2.version>
+        <snakeyaml.version>2.0</snakeyaml.version>
     </properties>
 
     <build>
