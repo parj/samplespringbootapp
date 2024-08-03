@@ -3,7 +3,7 @@
 {
 	"name": "Java",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/java:1-17-bullseye",
+	"image": "azul/zulu-openjdk:21-latest",
 
 	"features": {
 		"ghcr.io/devcontainers/features/java:1": {
@@ -12,6 +12,9 @@
 			"installGradle": "false"
 		},
 		"ghcr.io/devcontainers/features/docker-in-docker:2": {}
+	},
+	"containerEnv": {
+		"JAVA_HOME": "/usr/lib/jvm/zulu21"
 	}
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
