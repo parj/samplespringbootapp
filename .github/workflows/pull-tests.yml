@@ -7,7 +7,7 @@ jobs:
     strategy:
       matrix:
         distribution: ['zulu']
-        java: [ '17', '20' ]
+        java: [ '21' ]
     name: Java ${{ matrix.Java }} (${{ matrix.distribution }})
     steps:
       - uses: actions/checkout@v2
